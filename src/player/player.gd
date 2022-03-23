@@ -16,6 +16,17 @@ var just_wall_jumped := false
 var can_dash := true
 var is_attacking := false
 
+onready var attackSounds = [
+	$AttackSound1,
+	$AttackSound2,
+	$AttackSound3,
+	$AttackSound4,
+	$AttackSound5,
+	$AttackSound6
+]
+
+var rng = RandomNumberGenerator.new()
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	state_machine.init(self)
@@ -28,6 +39,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("attack"):
 		animations.play("attack")
 		is_attacking = true
+		attackSounds[rng.randi_range(0, 5)].play()
 	
 	if Input.is_action_pressed("move_right"):
 		is_facing_right = true
