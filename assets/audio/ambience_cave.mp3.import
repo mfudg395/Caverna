@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/ambience_cave.mp3-3a8cff628bc70f5ce2ba7c0b167d6377.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/ambience_cave.mp3"
+dest_files=[ "res://.import/ambience_cave.mp3-3a8cff628bc70f5ce2ba7c0b167d6377.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
