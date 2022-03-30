@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Corridors of Time - Chrono Trigger (Restored).mp3-3b6248ac85e7707c0df2ee70c352b6fc.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/Corridors of Time - Chrono Trigger (Restored).mp3"
+dest_files=[ "res://.import/Corridors of Time - Chrono Trigger (Restored).mp3-3b6248ac85e7707c0df2ee70c352b6fc.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
