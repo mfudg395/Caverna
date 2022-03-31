@@ -173,9 +173,6 @@ margin_right = 36.0
 margin_bottom = -65.0
 custom_fonts/font = SubResource( 4 )
 align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )

@@ -51,7 +51,7 @@ position = Vector2( 2351, -121 )
 position = Vector2( 1824, 331 )
 
 [node name="GroundMonk" parent="." instance=ExtResource( 4 )]
-position = Vector2( 676, -152 )
+position = Vector2( 676, 295 )
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 volume_db = -10.0
