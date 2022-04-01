@@ -35,7 +35,7 @@ func _on_DashDurationTimer_timeout() -> void:
 	get_node("../../DashCooldownTimer").start(DASH_COOLDOWN)
 	if !player.is_on_floor():
 		state_machine.transition_to("Fall")
-	elif !player.is_on_wall():
+	elif !player.is_on_wall() and state_machine.current_state != state_machine.states["death"]:
 		state_machine.transition_to("Idle")
 
 func _on_DashCooldownTimer_timeout() -> void:

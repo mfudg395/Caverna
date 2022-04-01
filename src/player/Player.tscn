@@ -245,7 +245,7 @@ drag_margin_bottom = 0.0
 
 [node name="PlayerFSM" type="Node" parent="."]
 script = ExtResource( 4 )
-initial_state = NodePath("Fall")
+initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="PlayerFSM"]
 script = ExtResource( 5 )

@@ -45,10 +45,9 @@ func _physics_process(delta: float) -> void:
 		is_facing_right = true
 	elif Input.is_action_pressed("move_left"):
 		is_facing_right = false
-		
+	
 	if state_machine.current_state != state_machine.states["death"]:
 		state_machine._physics_process(delta)
-
 
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	if anim_name == "attack":
