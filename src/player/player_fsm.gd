@@ -49,12 +49,14 @@ func _physics_process(delta: float) -> void:
 		label.text = "Wall Slide"
 	elif current_state == states["dash"]:
 		label.text = "Dash"
+	elif current_state == states["death"]:
+		label.text = "YOU DIED"
 	# Right now, the FSM is handling animations in order to prevent thee
 	# Attack animation from being interrupted if a new state is entered.
 	# Before, animations were played in their respective state's "enter"
 	# functions.
 	# Don't really like it, but it's the solution I have for now.
-	if player.animations.get_current_animation() != "attack":
+	if player.animations.get_current_animation() != "attack" and current_state != states["death"]:
 		player.animations.play(current_state.state_name)
 	current_state.physics_process(delta)
 

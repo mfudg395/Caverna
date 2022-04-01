@@ -36,7 +36,7 @@ func _process(delta: float) -> void:
 	state_machine._process(delta)
 	
 func _physics_process(delta: float) -> void:
-	if Input.is_action_just_pressed("attack"):
+	if Input.is_action_just_pressed("attack") and state_machine.current_state != state_machine.states["death"]:
 		animations.play("attack")
 		is_attacking = true
 		attackSounds[rng.randi_range(0, 5)].play()
@@ -45,10 +45,17 @@ func _physics_process(delta: float) -> void:
 		is_facing_right = true
 	elif Input.is_action_pressed("move_left"):
 		is_facing_right = false
-	state_machine._physics_process(delta)
+		
+	if state_machine.current_state != state_machine.states["death"]:
+		state_machine._physics_process(delta)
 
 
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	if anim_name == "attack":
 		is_attacking = false
 		animations.stop()
+
+
+func _on_PlayerHurtbox_area_entered(area):
+	if area.is_in_group("Enemy"):
+		state_machine.transition_to("Death")
