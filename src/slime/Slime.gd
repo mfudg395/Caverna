@@ -26,6 +26,7 @@ func _physics_process(delta: float) -> void:
 
 func handle_slime_death():
 	set_physics_process(false)
+	$Sprite/SlimeHitbox/CollisionShape2D.queue_free() # disables slime hurtbox during death anim
 	$AnimationPlayer.play("death")
 
 func _on_SlimeHurtbox_area_entered(area: Area2D) -> void:
