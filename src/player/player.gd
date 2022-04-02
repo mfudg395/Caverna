@@ -15,6 +15,8 @@ var is_facing_right := true
 var just_wall_jumped := false
 var can_dash := true
 var is_attacking := false
+var max_health = 3
+var current_health = max_health
 
 onready var attackSounds = [
 	$AttackSound1,
@@ -57,4 +59,9 @@ func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 
 func _on_PlayerHurtbox_area_entered(area):
 	if area.is_in_group("Enemy"):
+		current_health -= 1
+		get_parent().find_node("UI").find_node("Healthbar").frame -= 1
+		if current_health <= 0:
+			state_machine.transition_to("Death")
+			return
 		state_machine.transition_to("Hitstun")

@@ -269,6 +269,7 @@ position = Vector2( 216, 71 )
 scale = Vector2( 10, 10 )
 texture = ExtResource( 21 )
 hframes = 4
+frame = 3
 
 [node name="PlayerFSM" type="Node" parent="."]
 script = ExtResource( 4 )
