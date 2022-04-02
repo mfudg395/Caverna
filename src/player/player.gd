@@ -56,7 +56,6 @@ func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 		is_attacking = false
 		animations.stop()
 
-
 func _on_PlayerHurtbox_area_entered(area):
 	if area.is_in_group("Enemy"):
 		current_health -= 1
