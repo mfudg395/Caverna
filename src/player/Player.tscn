@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://assets/adventurer-v1.5-Sheet.png" type="Texture" id=1]
 [ext_resource path="res://src/player/move.gd" type="Script" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://assets/audio/sword_swing_4.mp3" type="AudioStream" id=17]
 [ext_resource path="res://assets/audio/sword_swing_6.mp3" type="AudioStream" id=18]
 [ext_resource path="res://src/player/death.gd" type="Script" id=19]
+[ext_resource path="res://src/player/hitstun.gd" type="Script" id=20]
 
 [sub_resource type="DynamicFont" id=4]
 size = 32
@@ -106,6 +107,22 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 22, 23 ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "hitstun"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 61, 62 ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -221,6 +238,7 @@ anims/RESET = SubResource( 10 )
 anims/attack = SubResource( 8 )
 anims/death = SubResource( 13 )
 anims/fall = SubResource( 6 )
+anims/hitstun = SubResource( 14 )
 anims/idle = SubResource( 2 )
 anims/jump = SubResource( 5 )
 anims/move = SubResource( 3 )
@@ -268,6 +286,12 @@ script = ExtResource( 10 )
 [node name="Death" type="Node" parent="PlayerFSM"]
 script = ExtResource( 19 )
 
+[node name="Hitstun" type="Node" parent="PlayerFSM"]
+script = ExtResource( 20 )
+
+[node name="HitstunTimer" type="Timer" parent="PlayerFSM/Hitstun"]
+one_shot = true
+
 [node name="WallJumpTimer" type="Timer" parent="."]
 one_shot = true
 
@@ -303,6 +327,7 @@ volume_db = -12.0
 
 [connection signal="area_entered" from="Sprite/PlayerHurtbox" to="." method="_on_PlayerHurtbox_area_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="timeout" from="PlayerFSM/Hitstun/HitstunTimer" to="PlayerFSM/Hitstun" method="_on_HitstunTimer_timeout"]
 [connection signal="timeout" from="WallJumpTimer" to="PlayerFSM/WallSlide" method="_on_WallJumpTimer_timeout"]
 [connection signal="timeout" from="DashDurationTimer" to="PlayerFSM/Dash" method="_on_DashDurationTimer_timeout"]
 [connection signal="timeout" from="DashCooldownTimer" to="PlayerFSM/Dash" method="_on_DashCooldownTimer_timeout"]

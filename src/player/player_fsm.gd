@@ -49,8 +49,10 @@ func _physics_process(delta: float) -> void:
 		label.text = "Wall Slide"
 	elif current_state == states["dash"]:
 		label.text = "Dash"
+	elif current_state == states["hitstun"]:
+		label.text = "Hitstun"
 	elif current_state == states["death"]:
-		label.text = "YOU DIED"
+		label.text = "Death"
 	# Right now, the FSM is handling animations in order to prevent thee
 	# Attack animation from being interrupted if a new state is entered.
 	# Before, animations were played in their respective state's "enter"

@@ -57,4 +57,4 @@ func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 
 func _on_PlayerHurtbox_area_entered(area):
 	if area.is_in_group("Enemy"):
-		state_machine.transition_to("Death")
+		state_machine.transition_to("Hitstun")
