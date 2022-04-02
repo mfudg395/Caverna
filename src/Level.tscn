@@ -4,6 +4,8 @@
 [ext_resource path="res://src/player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/slime/Slime.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/killplane.gd" type="Script" id=4]
+[ext_resource path="res://assets/audio/Corridors of Time - Chrono Trigger (Restored).mp3" type="AudioStream" id=5]
+[ext_resource path="res://assets/audio/ambience_cave.mp3" type="AudioStream" id=6]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
@@ -72,3 +74,14 @@ position = Vector2( 4021.5, 2839.75 )
 shape = SubResource( 3 )
 
 [connection signal="body_entered" from="Killplane" to="Killplane" method="_on_Area2D_body_entered"]
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -10.0
+pitch_scale = 0.75
+autoplay = true
+
+[node name="Ambience" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = 5.0
+autoplay = true
