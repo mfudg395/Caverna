@@ -203,6 +203,7 @@ collision_mask = 4
 script = ExtResource( 3 )
 
 [node name="StateLabel" type="Label" parent="."]
+visible = false
 margin_left = -36.0
 margin_top = -101.0
 margin_right = 36.0
