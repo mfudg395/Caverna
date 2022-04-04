@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/ground_monk_FREE_v1.2-SpriteSheet_288x128.png" type="Texture" id=1]
 [ext_resource path="res://src/ground_monk/ground_monk.gd" type="Script" id=2]
@@ -37,6 +37,22 @@ tracks/1/keys = {
 } ]
 }
 
+[sub_resource type="Animation" id=8]
+resource_name = "death"
+length = 1.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 300, 301, 302, 303, 304, 305, 306, 307, 308, 309, 310, 311, 312, 313, 314, 315, 316, 317 ]
+}
+
 [sub_resource type="Animation" id=2]
 resource_name = "idle"
 length = 0.8
@@ -73,13 +89,16 @@ tracks/0/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 60, 99 )
+extents = Vector2( 48, 99 )
 
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 51.875, 40 )
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 52, 97.25 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 43, 109.5 )
 
 [node name="GroundMonk" type="KinematicBody2D"]
 collision_layer = 2
@@ -92,32 +111,44 @@ scale = Vector2( 6, 6 )
 texture = ExtResource( 1 )
 hframes = 25
 vframes = 13
-frame = 125
+frame = 317
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/attack1 = SubResource( 4 )
+anims/death = SubResource( 8 )
 anims/idle = SubResource( 2 )
 anims/move = SubResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -99 )
+visible = false
+position = Vector2( -12, -99 )
 shape = SubResource( 1 )
 
 [node name="AttackDetector" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDetector"]
 modulate = Color( 0.027451, 0.054902, 0.47451, 1 )
-position = Vector2( 114.125, -132 )
+position = Vector2( 89.125, -132 )
 shape = SubResource( 6 )
 
 [node name="PlayerDetector" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
-position = Vector2( 113, -99.75 )
+position = Vector2( 88, -99.75 )
 shape = SubResource( 5 )
 
+[node name="MonkHurtbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MonkHurtbox"]
+position = Vector2( -24, -107.5 )
+shape = SubResource( 7 )
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="body_entered" from="AttackDetector" to="." method="_on_AttackDetector_body_entered"]
 [connection signal="body_entered" from="PlayerDetector" to="." method="_on_PlayerDetector_body_entered"]
+[connection signal="area_entered" from="MonkHurtbox" to="." method="_on_MonkHurtbox_area_entered"]
