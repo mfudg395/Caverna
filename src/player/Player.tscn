@@ -311,6 +311,9 @@ one_shot = true
 [node name="DashCooldownTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="InvulnerableTimer" type="Timer" parent="."]
+one_shot = true
+
 [node name="AttackSound1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 13 )
 volume_db = -12.0
@@ -341,6 +344,7 @@ volume_db = -12.0
 [connection signal="timeout" from="WallJumpTimer" to="PlayerFSM/WallSlide" method="_on_WallJumpTimer_timeout"]
 [connection signal="timeout" from="DashDurationTimer" to="PlayerFSM/Dash" method="_on_DashDurationTimer_timeout"]
 [connection signal="timeout" from="DashCooldownTimer" to="PlayerFSM/Dash" method="_on_DashCooldownTimer_timeout"]
+[connection signal="timeout" from="InvulnerableTimer" to="." method="_on_InvulnerableTimer_timeout"]
 
 [editable path="Sprite/PlayerHitbox"]
 [editable path="Sprite/PlayerHurtbox"]

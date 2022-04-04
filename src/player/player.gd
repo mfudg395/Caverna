@@ -1,6 +1,8 @@
 class_name Player
 extends KinematicBody2D
 
+const INVULNERABLE_TIME = 3
+
 export var gravity := 835.0
 export var speed := 250.0 
 export var jump_strength := -635.0
@@ -64,3 +66,8 @@ func _on_PlayerHurtbox_area_entered(area):
 			state_machine.transition_to("Death")
 			return
 		state_machine.transition_to("Hitstun")
+		$Sprite/PlayerHurtbox.visible = false
+		$InvulnerableTimer.start(INVULNERABLE_TIME)
+
+func _on_InvulnerableTimer_timeout() -> void:
+	$Sprite/PlayerHurtbox.visible = true

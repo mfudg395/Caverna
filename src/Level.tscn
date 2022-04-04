@@ -61,8 +61,11 @@ position = Vector2( 4826, -549 )
 [node name="Slime2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 8381, 19 )
 
-[node name="Position2D" type="Position2D" parent="."]
+[node name="KillplaneCheckpoint" type="Position2D" parent="."]
 position = Vector2( 5844, 1946 )
+
+[node name="RespawnCheckpoint" type="Position2D" parent="."]
+position = Vector2( 3240, -1289 )
 
 [node name="Killplane" type="Area2D" parent="."]
 position = Vector2( 24, 380 )
