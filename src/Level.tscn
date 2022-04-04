@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/basic_tileset.png" type="Texture" id=1]
 [ext_resource path="res://src/player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/slime/Slime.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/killplane.gd" type="Script" id=4]
+[ext_resource path="res://src/ground_monk/GroundMonk.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/audio/Corridors of Time - Chrono Trigger (Restored).mp3" type="AudioStream" id=5]
+[ext_resource path="res://src/killplane.gd" type="Script" id=6]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
@@ -58,9 +59,6 @@ position = Vector2( 4521, -589 )
 [node name="Slime" parent="." instance=ExtResource( 3 )]
 position = Vector2( 4826, -549 )
 
-[node name="Slime2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 8381, 19 )
-
 [node name="KillplaneCheckpoint" type="Position2D" parent="."]
 position = Vector2( 5844, 1946 )
 
@@ -69,7 +67,7 @@ position = Vector2( 3240, -1289 )
 
 [node name="Killplane" type="Area2D" parent="."]
 position = Vector2( 24, 380 )
-script = ExtResource( 4 )
+script = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killplane"]
 position = Vector2( 4021.5, 2839.75 )
@@ -84,5 +82,8 @@ autoplay = true
 stream = ExtResource( 5 )
 volume_db = 5.0
 autoplay = true
+
+[node name="GroundMonk" parent="." instance=ExtResource( 4 )]
+position = Vector2( 8594, 28 )
 
 [connection signal="body_entered" from="Killplane" to="Killplane" method="_on_Area2D_body_entered"]
