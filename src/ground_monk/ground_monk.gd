@@ -46,9 +46,11 @@ func _on_AttackDetector_body_entered(_body):
 func _on_MonkHurtbox_area_entered(area):
 	if area.name == "PlayerHitbox":
 		health -= 1
-		print(health)
 		if health <= 0:
 			set_physics_process(false)
+			$AttackDetector.queue_free()
+			$PlayerDetector.queue_free()
+			$MonkHurtbox.queue_free()
 			$AnimationPlayer.play("death")
 
 func _on_AnimationPlayer_animation_finished(anim_name):
