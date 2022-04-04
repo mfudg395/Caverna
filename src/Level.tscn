@@ -38,6 +38,9 @@ extents = Vector2( 5845.5, 115.25 )
 
 [node name="Level" type="Node2D"]
 
+[node name="GroundMonk" parent="." instance=ExtResource( 4 )]
+position = Vector2( 8594, 28 )
+
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2( 385, 1 )
 tile_set = SubResource( 2 )
@@ -54,7 +57,7 @@ margin_bottom = 1865.0
 text = "You Might Need This"
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 4521, -589 )
+position = Vector2( 7141, -529 )
 
 [node name="Slime" parent="." instance=ExtResource( 3 )]
 position = Vector2( 4826, -549 )
@@ -82,8 +85,5 @@ autoplay = true
 stream = ExtResource( 5 )
 volume_db = 5.0
 autoplay = true
-
-[node name="GroundMonk" parent="." instance=ExtResource( 4 )]
-position = Vector2( 8594, 28 )
 
 [connection signal="body_entered" from="Killplane" to="Killplane" method="_on_Area2D_body_entered"]

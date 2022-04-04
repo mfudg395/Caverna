@@ -17,7 +17,7 @@ var is_facing_right := true
 var just_wall_jumped := false
 var can_dash := true
 var is_attacking := false
-var max_health = 3
+var max_health = 2
 var current_health = max_health
 
 onready var attackSounds = [
@@ -60,14 +60,14 @@ func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 
 func _on_PlayerHurtbox_area_entered(area):
 	if area.is_in_group("Enemy"):
-		current_health -= 1
+		if area.is_in_group("Slime"):
+			current_health -= 0.7
+		else:
+			current_health -= 1
 		get_parent().find_node("UI").find_node("Healthbar").frame -= 1
 		if current_health <= 0:
+			print("transitioning to death")
 			state_machine.transition_to("Death")
-			return
-		state_machine.transition_to("Hitstun")
-		$Sprite/PlayerHurtbox.visible = false
-		$InvulnerableTimer.start(INVULNERABLE_TIME)
-
-func _on_InvulnerableTimer_timeout() -> void:
-	$Sprite/PlayerHurtbox.visible = true
+		else:
+			print("transitioning to hitstun")
+			state_machine.transition_to("Hitstun")

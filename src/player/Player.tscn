@@ -214,7 +214,7 @@ align = 1
 texture = ExtResource( 1 )
 hframes = 7
 vframes = 16
-frame = 62
+frame = 52
 
 [node name="PlayerHitbox" parent="Sprite" instance=ExtResource( 11 )]
 

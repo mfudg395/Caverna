@@ -13,7 +13,7 @@ func enter() -> void:
 func physics_process(delta):
 	player.velocity.y += player.gravity * delta
 	player.velocity = player.move_and_slide(player.velocity, Vector2.UP)
-	
+
 	if Input.is_action_just_pressed("jump"):
 		player.position = get_node("/root/Level/RespawnCheckpoint").position
 		player.current_health = player.max_health
