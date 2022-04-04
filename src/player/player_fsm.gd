@@ -69,6 +69,9 @@ func transition_to(new_state: String) -> void:
 	# transition to it.
 	if not has_node(new_state):
 		return
+	if new_state == "Dash":
+		if !player.has_dash:
+			return
 	current_state.exit() # exit current state
 	current_state = get_node(new_state) # update current state with new state
 	current_state.enter() # begin new state

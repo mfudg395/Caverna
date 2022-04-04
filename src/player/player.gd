@@ -19,6 +19,7 @@ var can_dash := true
 var is_attacking := false
 var max_health = 2
 var current_health = max_health
+var has_dash = false
 
 onready var attackSounds = [
 	$AttackSound1,
@@ -69,3 +70,5 @@ func _on_PlayerHurtbox_area_entered(area):
 			state_machine.transition_to("Death")
 		else:
 			state_machine.transition_to("Hitstun")
+	if area.is_in_group("DashPowerup"):
+		has_dash = true

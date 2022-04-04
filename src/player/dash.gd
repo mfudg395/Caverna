@@ -10,7 +10,6 @@ const DASH_DURATION := 0.25
 const DASH_COOLDOWN := 0.3
 	
 func enter() -> void:
-#	player.animations.play("move")
 	if player.is_on_wall():
 		player.velocity.x = DASH_SPEED if Input.is_action_pressed("move_left") else -DASH_SPEED
 	else:
