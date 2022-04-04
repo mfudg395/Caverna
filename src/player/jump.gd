@@ -14,8 +14,13 @@ func physics_process(delta: float) -> void:
 	player.sprite.scale.x = 1 if player.is_facing_right else -1
 	
 	var direction = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+	var is_jump_halted = Input.is_action_just_released("jump") and player.velocity.y < 0.0
+	
 	if !player.just_wall_jumped:
 		player.velocity.x = direction * player.speed
+		
+	if is_jump_halted:
+		player.velocity.y = 0
 	
 	player.velocity.y += player.gravity * delta
 	player.velocity = player.move_and_slide(player.velocity, Vector2.UP)
