@@ -66,8 +66,6 @@ func _on_PlayerHurtbox_area_entered(area):
 			current_health -= 1
 		get_parent().find_node("UI").find_node("Healthbar").frame -= 1
 		if current_health <= 0:
-			print("transitioning to death")
 			state_machine.transition_to("Death")
 		else:
-			print("transitioning to hitstun")
 			state_machine.transition_to("Hitstun")
